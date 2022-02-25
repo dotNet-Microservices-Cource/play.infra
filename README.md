@@ -30,3 +30,13 @@ az servicebus namespace create --name $appname --resource-group $appname --sku S
 $registryname="playeconomyapp"
 az acr create --name $registryname --resource-group $appname --sku Basic
 ```
+
+## Creating the AKS clusters
+```powershell
+az feature register --name EnablePodIdentityPreview --namespace Microsoft.ContainerService
+az extension add --name aks-preview
+
+az aks create -n $registryname -g $appname --node-vm-size Standard_B2s --node-count 2 --attach-acr $registryname --enable-pod-identity --network-plugin azure
+
+az aks get-credentials --name $registryname --resource-group $appname
+```
