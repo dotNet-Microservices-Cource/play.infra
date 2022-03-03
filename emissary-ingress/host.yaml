@@ -1,0 +1,10 @@
+apiVersion: getambassador.io/v3alpha1
+kind: Host
+metadata:
+  name: playeconomy-host
+spec:
+  hostname: playeconomyapp.eastus.cloudapp.azure.com
+  acmeProvider:
+    email: kris.ganchev91@gmail.com
+  tlsSecret:
+    name: playeconomy-tls
